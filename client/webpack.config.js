@@ -16,8 +16,21 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        include: path.join(__dirname, 'src'),
         loader: 'babel-loader',
-        include: path.join(__dirname, 'src')
+
+        options: {
+          plugins: ['syntax-dynamic-import'],
+
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                modules: false
+              }
+            ]
+          ]
+        }
       },
       {
         test: /\.scss$/,
@@ -28,5 +41,6 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  mode: 'development'
 };
